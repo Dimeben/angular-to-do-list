@@ -1,23 +1,6 @@
 <main class="todo-container">
-  <div>
-    <form (ngSubmit)="addTask()" #taskForm="ngForm">
-      <input
-        type="text"
-        [(ngModel)]="newTask"
-        name="task"
-        required
-        placeholder="New task"
-      />
-
-      <select [(ngModel)]="newPriority" name="priority">
-        <option value="high">High</option>
-        <option value="medium">Medium</option>
-        <option value="low">Low</option>
-      </select>
-
-      <input type="date" [(ngModel)]="newDeadline" name="deadline" required />
-
-      <button type="submit">Add Task</button>
-    </form>
-  </div>
+  <app-header></app-header>
+  <app-login-form></app-login-form>
+  <app-view-bar></app-view-bar>
+  <app-new-task-bar></app-new-task-bar>
 </main>
