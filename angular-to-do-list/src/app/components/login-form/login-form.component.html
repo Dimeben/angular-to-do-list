@@ -1,1 +1,24 @@
-<p>login-form works!</p>
+<header>
+  <h2>Please create an account</h2>
+</header>
+
+<div>
+  <form (ngSubmit)="createAccount()">
+    <input
+      type="email"
+      [(ngModel)]="newEmail"
+      name="email"
+      required
+      placeholder="Please enter your email address"
+    />
+    <input type="password" [(ngModel)]="newPassword" name="password" required />
+    <input
+      type="text"
+      [(ngModel)]="newUsername"
+      name="username"
+      required
+      placeholder="Please enter a username"
+    />
+    <button type="submit">Create Account</button>
+  </form>
+</div>

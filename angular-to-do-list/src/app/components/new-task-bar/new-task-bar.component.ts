@@ -13,7 +13,7 @@ export interface ToDoItem {
   standalone: true,
   imports: [FormsModule],
   templateUrl: './new-task-bar.component.html',
-  styleUrls: ['./new-task-bar.component.css']
+  styleUrls: ['./new-task-bar.component.css'],
 })
 export class NewTaskBarComponent {
   toDoList: ToDoItem[] = [];
@@ -22,12 +22,12 @@ export class NewTaskBarComponent {
   newDeadline: string = '';
 
   addTask(): void {
-    if (this.newTask.trim() !== '' && this.newPriority) {
+    if (this.newTask.trim() !== '' && this.newPriority && this.newDeadline) {
       const newToDoItem: ToDoItem = {
         id: Date.now(),
         task: this.newTask.trim(),
         priority: this.newPriority,
-        deadline: new Date(this.newDeadline)
+        deadline: new Date(this.newDeadline),
       };
 
       this.toDoList.push(newToDoItem);
