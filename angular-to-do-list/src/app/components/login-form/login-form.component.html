@@ -1,24 +1,40 @@
-<header>
+<header *ngIf="!accountCreated">
   <h2>Please create an account</h2>
 </header>
 
-<div>
+<div *ngIf="!accountCreated">
   <form (ngSubmit)="createAccount()">
     <input
       type="email"
       [(ngModel)]="newEmail"
       name="email"
       required
-      placeholder="Please enter your email address"
+      placeholder="E-mail Address"
     />
-    <input type="password" [(ngModel)]="newPassword" name="password" required />
+    <input
+      type="password"
+      [(ngModel)]="newPassword"
+      name="password"
+      required
+      placeholder="Password"
+    />
+    <p
+      *ngIf="!validPassword && !accountCreated && submitPressed"
+      style="color: red"
+    >
+      Password must be at least 8 characters long, contain at least one
+      uppercase letter and one number.
+    </p>
+
     <input
       type="text"
       [(ngModel)]="newUsername"
       name="username"
       required
-      placeholder="Please enter a username"
+      placeholder="Username"
     />
     <button type="submit">Create Account</button>
   </form>
 </div>
+
+<p *ngIf="accountCreated">Welcome, {{ showUsername() }}</p>
