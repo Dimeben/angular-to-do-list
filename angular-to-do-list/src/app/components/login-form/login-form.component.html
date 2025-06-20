@@ -1,40 +1,44 @@
-<header *ngIf="!accountCreated">
-  <h2>Please create an account</h2>
-</header>
+<div class="page">
+  <header class="header" *ngIf="!accountCreated">
+    <h2>Please create an account</h2>
+  </header>
 
-<div *ngIf="!accountCreated">
-  <form (ngSubmit)="createAccount()">
-    <input
-      type="email"
-      [(ngModel)]="newEmail"
-      name="email"
-      required
-      placeholder="E-mail Address"
-    />
-    <input
-      type="password"
-      [(ngModel)]="newPassword"
-      name="password"
-      required
-      placeholder="Password"
-    />
-    <p
-      *ngIf="!validPassword && !accountCreated && submitPressed"
-      style="color: red"
-    >
-      Password must be at least 8 characters long, contain at least one
-      uppercase letter and one number.
-    </p>
+  <div *ngIf="!accountCreated">
+    <form class="form" (ngSubmit)="createAccount()">
+      <input
+        type="email"
+        [(ngModel)]="newEmail"
+        name="email"
+        required
+        placeholder="E-mail Address"
+      />
+      <input
+        type="password"
+        [(ngModel)]="newPassword"
+        name="password"
+        required
+        placeholder="Password"
+      />
+      <p
+        *ngIf="!validPassword && !accountCreated && submitPressed"
+        style="color: red"
+      >
+        Password must be at least 8 characters long, contain at least one
+        uppercase letter and one number.
+      </p>
 
-    <input
-      type="text"
-      [(ngModel)]="newUsername"
-      name="username"
-      required
-      placeholder="Username"
-    />
-    <button type="submit">Create Account</button>
-  </form>
+      <input
+        type="text"
+        [(ngModel)]="newUsername"
+        name="username"
+        required
+        placeholder="Username"
+      />
+      <button class="post-comment-button" type="submit">Create Account</button>
+    </form>
+  </div>
+
+  <p *ngIf="accountCreated" class="comment-body">
+    Welcome, {{ showUsername() }}
+  </p>
 </div>
-
-<p *ngIf="accountCreated">Welcome, {{ showUsername() }}</p>

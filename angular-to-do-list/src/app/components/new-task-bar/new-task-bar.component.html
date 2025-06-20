@@ -1,5 +1,18 @@
-<div>
-  <form (ngSubmit)="addTask()" #taskForm="ngForm">
+<app-login-form
+  *ngIf="!accountCreated"
+  (accountCreatedEvent)="onAccountCreated($event)"
+>
+</app-login-form>
+
+<div class="page" *ngIf="accountCreated">
+  <h2>Welcome, {{ username }}!</h2>
+
+  <div class="params-bar">
+    <button (click)="sortByPriority()">Sort by Priority</button>
+    <button (click)="sortByDeadline()">Sort by Deadline</button>
+  </div>
+
+  <form class="form" (ngSubmit)="addTask()" #taskForm="ngForm">
     <input
       type="text"
       [(ngModel)]="newTask"
@@ -9,13 +22,20 @@
     />
 
     <select [(ngModel)]="newPriority" name="priority">
-      <option value="high">High</option>
-      <option value="medium">Medium</option>
-      <option value="low">Low</option>
+      <option value="High">High</option>
+      <option value="Medium">Medium</option>
+      <option value="Low">Low</option>
     </select>
 
     <input type="date" [(ngModel)]="newDeadline" name="deadline" required />
 
     <button type="submit">Add Task</button>
   </form>
+
+  <div class="comments" *ngFor="let task of toDoList">
+    <p><strong>Task:</strong> {{ task.task }}</p>
+    <p><strong>Priority:</strong> {{ task.priority }}</p>
+    <p><strong>Deadline:</strong> {{ task.deadline | date : "mediumDate" }}</p>
+    <hr />
+  </div>
 </div>

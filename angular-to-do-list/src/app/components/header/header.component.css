@@ -1,0 +1,25 @@
+header {
+  background-color: #f8f8f8;
+  padding: 1rem;
+  border-bottom: 1px solid #ddd;
+  text-align: center;
+  font-size: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  header {
+    font-size: 1.75rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  header {
+    font-size: 2rem;
+  }
+}
+
+@media (min-width: 1200px) {
+  header {
+    font-size: 2.25rem;
+  }
+}

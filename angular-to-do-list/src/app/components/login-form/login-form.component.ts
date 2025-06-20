@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
@@ -11,6 +11,7 @@ export interface Account {
 
 @Component({
   selector: 'app-login-form',
+  standalone: true,
   imports: [FormsModule, CommonModule],
   templateUrl: './login-form.component.html',
   styleUrl: './login-form.component.css',
@@ -21,6 +22,11 @@ export class LoginFormComponent {
   newPassword: string = '';
   newUsername: string = '';
   accountCreated: boolean = false;
+  @Output() accountCreatedEvent = new EventEmitter<{
+    created: boolean;
+    username: string;
+  }>();
+
   passwordValidator: RegExp = /^(?=.*[A-Z])(?=.*\d).{8,}$/;
   submitPressed: boolean = false;
   validPassword: boolean = false;
@@ -36,6 +42,10 @@ export class LoginFormComponent {
         this.newAccount.username = this.newUsername.trim();
 
         this.accountCreated = true;
+        this.accountCreatedEvent.emit({
+          created: true,
+          username: this.newAccount.username,
+        });
         this.newEmail = '';
         this.newPassword = '';
         this.newUsername = '';
